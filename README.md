@@ -41,4 +41,7 @@ Please note that this software is early alpha status. Use carefully at your own 
             // handle result
         }
         
-    }).execute(Example.class, id");
+    }).execute(MyEntity.class, id");
+
+## Tips
+- Use a common base class for all your entities that contains the ID property; that way you don't have to expose the ID field in each of your entities.
