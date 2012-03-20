@@ -65,6 +65,8 @@ public abstract class StructrConnector<T> extends AsyncTask<Object, Progress, T>
 			}
 		});
 		
+		updatePreferences(prefs);
+		
 		// create socket factory only once
 		if(socketFactory == null) {
 			socketFactory = createSslSocketFactory(context, sslKeyStoreId, sslKeyStorePassword);
