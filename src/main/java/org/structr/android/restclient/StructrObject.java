@@ -23,6 +23,7 @@ import android.net.http.AndroidHttpClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collections;
@@ -44,7 +45,7 @@ import org.apache.http.util.EntityUtils;
  *
  * @author Christian Morgner
  */
-public abstract class StructrObject {
+public abstract class StructrObject implements Serializable {
 
 	private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
 	private static AndroidHttpClient client = null;
@@ -331,7 +332,7 @@ public abstract class StructrObject {
 
 			} else {
 
-				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
+				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase(), EntityUtils.toString(response.getEntity()));
 			}
 
 		} catch(Throwable t) {
@@ -385,7 +386,7 @@ public abstract class StructrObject {
 
 			} else {
 
-				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
+				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase(), EntityUtils.toString(response.getEntity()));
 			}
 
 		} catch(Throwable t) {
@@ -509,7 +510,7 @@ public abstract class StructrObject {
 
 			} else {
 
-				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase());
+				throw new StructrException(response.getStatusLine().getStatusCode(), response.getStatusLine().getReasonPhrase(), EntityUtils.toString(response.getEntity()));
 			}
 
 		} catch(Throwable t) {
