@@ -50,11 +50,11 @@ public abstract class CollectionHandlerListAdapter<T extends StructrObject> impl
 	}
 
 	@Override
-	public void registerDataSetObserver(DataSetObserver dso) {
+	public void registerDataSetObserver(final DataSetObserver dso) {
 	}
 
 	@Override
-	public void unregisterDataSetObserver(DataSetObserver dso) {
+	public void unregisterDataSetObserver(final DataSetObserver dso) {
 	}
 
 	@Override
@@ -110,5 +110,12 @@ public abstract class CollectionHandlerListAdapter<T extends StructrObject> impl
 	@Override
 	public boolean isEmpty() {
 		return list != null && list.isEmpty();
+	}
+
+	public void clear() {
+
+		if (list != null) {
+			list.clear();
+		}
 	}
 }
