@@ -64,6 +64,12 @@ public abstract class StructrConnector<T> extends AsyncTask<Object, Progress, T>
 		updatePreferences(prefs);
 	}
 
+	public static void initialize(final String s, final String u, final String p) {
+		server   = s;
+		userName = u;
+		password = p;
+	}
+
 	private static void updatePreferences(SharedPreferences prefs) {
 		server   = prefs.getString(SERVER_KEY, "");
 		userName = prefs.getString(USERNAME_KEY, "");
@@ -71,6 +77,7 @@ public abstract class StructrConnector<T> extends AsyncTask<Object, Progress, T>
 	}
 
 	public static String getServer() {
+
 		if(server == null) {
 			throw new IllegalStateException("StructrConnector not initialized! You must call StructrConnector.initialize() before using it.");
 		}
@@ -78,6 +85,7 @@ public abstract class StructrConnector<T> extends AsyncTask<Object, Progress, T>
 	}
 
 	public static String getUserName() {
+
 		if(userName == null) {
 			throw new IllegalStateException("StructrConnector not initialized! You must call StructrConnector.initialize() before using it.");
 		}
@@ -85,6 +93,7 @@ public abstract class StructrConnector<T> extends AsyncTask<Object, Progress, T>
 	}
 
 	public static String getPassword() {
+
 		if(password == null) {
 			throw new IllegalStateException("StructrConnector not initialized! You must call StructrConnector.initialize() before using it.");
 		}

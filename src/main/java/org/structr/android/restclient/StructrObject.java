@@ -91,8 +91,18 @@ public abstract class StructrObject implements Serializable {
 	 *
 	 * @throws Throwable
 	 */
+	public void dbCreate(final String path) throws Throwable {
+		create(buildPath(path, getEntityName()), this, getClass());
+	}
+
+	/**
+	 * Creates this entity on the REST server. After successful creation, the ID
+	 * of this entity will be set.
+	 *
+	 * @throws Throwable
+	 */
 	public void dbCreate() throws Throwable {
-		create(buildPath("/", getEntityName()), this, getClass());
+		dbCreate("/");
 	}
 
 	/**
@@ -300,9 +310,17 @@ public abstract class StructrObject implements Serializable {
 		return client;
 	}
 
+	public static <T extends StructrObject> String toJson(final T value) {
+		return gson.toJson(value);
+	}
+
+	public static <T extends StructrObject> T fromJson(final Class<T> type, final String source) {
+		return gson.fromJson(source, type);
+	}
+
 	// ----- private methods -----
 	private String getEntityName() {
-		return getClass().getSimpleName().toLowerCase();
+		return getClass().getSimpleName();
 	}
 
 
